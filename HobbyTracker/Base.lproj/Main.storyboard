@@ -148,6 +148,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem systemItem="cancel" id="NTT-RX-L58"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="gyq-SI-RuA"/>
                                     <barButtonItem systemItem="save" id="l01-VW-cQ9"/>
                                 </items>
                             </toolbar>
