@@ -43,6 +43,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4411E036233C50FC00C39E98 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				44D5726A233464FB007BBA35 /* FriendsTableViewController.swift */,
+				4411E02E233C4F6C00C39E98 /* AddFriendViewController.swift */,
+				4411E030233C4F8000C39E98 /* FriendDetailViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4411E037233C514800C39E98 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				4411E032233C4FB300C39E98 /* FriendTableViewCell.swift */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		4411E038233C515500C39E98 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				4411E034233C4FE300C39E98 /* Friend.swift */,
+			);
+			name = Modal;
+			sourceTree = "<group>";
+		};
 		44D5725C233464FB007BBA35 = {
 			isa = PBXGroup;
 			children = (
@@ -63,11 +89,9 @@
 			isa = PBXGroup;
 			children = (
 				44D57268233464FB007BBA35 /* AppDelegate.swift */,
-				44D5726A233464FB007BBA35 /* FriendsTableViewController.swift */,
-				4411E02E233C4F6C00C39E98 /* AddFriendViewController.swift */,
-				4411E030233C4F8000C39E98 /* FriendDetailViewController.swift */,
-				4411E032233C4FB300C39E98 /* FriendTableViewCell.swift */,
-				4411E034233C4FE300C39E98 /* Friend.swift */,
+				4411E036233C50FC00C39E98 /* View Controllers */,
+				4411E037233C514800C39E98 /* Custom Views */,
+				4411E038233C515500C39E98 /* Modal */,
 				44D5726C233464FB007BBA35 /* Main.storyboard */,
 				44D5726F233464FC007BBA35 /* Assets.xcassets */,
 				44D57271233464FC007BBA35 /* LaunchScreen.storyboard */,
