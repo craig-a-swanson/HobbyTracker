@@ -16,22 +16,23 @@ class FriendsTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        friends.append(Friend(name: "Person A", hometown: "Los Angeles", hobbies: ["A", "B"]))
-        friends.append(Friend(name: "Person B", hometown: "San Diego", hobbies: ["A", "C"]))
-        friends.append(Friend(name: "Person C", hometown: "Minneapolis", hobbies: ["A", "C"]))
-        friends.append(Friend(name: "Person D", hometown: "Seattle", hobbies: ["A", "E"]))
-        friends.append(Friend(name: "Person E", hometown: "Los Angeles", hobbies: ["A", "F"]))
-        // Do any additional setup after loading the view.
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddFriendModalSegue" {
+            guard let addFriendVC = segue.destination as? AddFriendViewController else { fatalError() }
+            
+            addFriendVC.delegate = self
+        }
+    }
 
 }
 
+// MARK: - Table View Data Source
 extension FriendsTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return friends.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,5 +42,15 @@ extension FriendsTableViewController: UITableViewDataSource {
         cell.friend = friend
         
         return cell
+    }
+}
+
+// MARK: - Add Friend Delegate
+
+extension FriendsTableViewController: AddFriendDelegate {
+    func friendWasCreated(_ friend: Friend) {
+        friends.append(friend)
+        tableView.reloadData()
+        dismiss(animated: true, completion: nil)
     }
 }

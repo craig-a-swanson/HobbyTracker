@@ -83,7 +83,7 @@
                     <navigationItem key="navigationItem" title="Hobby Tracker" id="5x1-XB-QUu">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cxh-P0-epZ">
                             <connections>
-                                <segue destination="B3d-gi-877" kind="presentation" id="3jy-im-GCp"/>
+                                <segue destination="B3d-gi-877" kind="presentation" identifier="AddFriendModalSegue" id="3jy-im-GCp"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="1023.1884057971015" y="104.46428571428571"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Friend View Controller-->
         <scene sceneID="4jh-oQ-EnP">
             <objects>
-                <viewController id="B3d-gi-877" sceneMemberID="viewController">
+                <viewController id="B3d-gi-877" customClass="AddFriendViewController" customModule="HobbyTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E4R-Ei-MxD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -149,9 +149,17 @@
                                 <rect key="frame" x="0.0" y="798" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem systemItem="cancel" id="NTT-RX-L58"/>
+                                    <barButtonItem systemItem="cancel" id="NTT-RX-L58">
+                                        <connections>
+                                            <action selector="cancelOperation:" destination="B3d-gi-877" id="OO3-Oz-Kb7"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gyq-SI-RuA"/>
-                                    <barButtonItem systemItem="save" id="l01-VW-cQ9"/>
+                                    <barButtonItem systemItem="save" id="l01-VW-cQ9">
+                                        <connections>
+                                            <action selector="saveFriend:" destination="B3d-gi-877" id="32D-4a-AuD"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -163,6 +171,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jTr-Ki-LUf"/>
                     </view>
+                    <connections>
+                        <outlet property="hobby1TextField" destination="uYS-UJ-cB0" id="gSo-WN-Veb"/>
+                        <outlet property="hobby2TextField" destination="IcT-Os-soa" id="A6v-r2-0zM"/>
+                        <outlet property="hobby3TextField" destination="qyv-Qc-MFO" id="vft-ll-fsD"/>
+                        <outlet property="hometownTextField" destination="EJt-Jb-S1Z" id="of9-yG-u9F"/>
+                        <outlet property="nameTextField" destination="Oby-pA-L72" id="5N8-cF-Svm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igp-T3-lgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
