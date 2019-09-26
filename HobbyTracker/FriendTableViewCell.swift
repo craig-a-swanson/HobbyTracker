@@ -9,16 +9,24 @@
 import UIKit
 
 class FriendTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var hometownLabel: UILabel!
+    @IBOutlet weak var hobbyCountLabel: UILabel!
+    
+    var friend: Friend? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    private func updateView() {
+        guard let friend = friend else { return }
+        
+        nameLabel.text = friend.name
+        hometownLabel.text = friend.hometown
+        hobbyCountLabel.text = "\(friend.hobbies.count) Hobbies"
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 
 }
