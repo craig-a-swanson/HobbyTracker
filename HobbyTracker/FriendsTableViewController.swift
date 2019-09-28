@@ -13,18 +13,47 @@ class FriendsTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var friends: [Friend] = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    var persistentStoreURL: URL! {
+        if let documentURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) {
+            let persistentStoreURL = documentURL.appendingPathComponent("friendsList.plist")
+            return persistentStoreURL
+        }
+        return nil
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddFriendModalSegue" {
-            guard let addFriendVC = segue.destination as? AddFriendViewController else { fatalError() }
-            
-            addFriendVC.delegate = self
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let data = try? Data(contentsOf: persistentStoreURL),
+            let savedFriends = try? PropertyListDecoder().decode([Friend].self, from: data) {
+            friends = savedFriends
         }
     }
+    
+    //func save() {
+    //    if let data = try? PropertyListEncoder().encode(friends) {
+    //        try? data.write(to: )
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "AddFriendModalSegue":
+            guard let addFriendVC = segue.destination as? AddFriendViewController
+                else { fatalError() }
+            addFriendVC.delegate = self
+            
+        case "ShowFriendDetailSegue":
+            guard let indexPath = tableView.indexPathForSelectedRow,
+                let friendDetailVC = segue.destination as?
+                FriendDetailViewController else { fatalError() }
+            friendDetailVC.friend = friends[indexPath.row]
+            
+        default:
+            fatalError("An unknown segue was encountered: \(segue.identifier ?? "<No ID>")")
+        }
+        
+    
+} //ShowFriendDetailSegue
 
 }
 
@@ -52,5 +81,7 @@ extension FriendsTableViewController: AddFriendDelegate {
         friends.append(friend)
         tableView.reloadData()
         dismiss(animated: true, completion: nil)
+        
+//        save()
     }
 }

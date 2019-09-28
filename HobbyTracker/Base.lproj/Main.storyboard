@@ -62,7 +62,7 @@
                                             <outlet property="hobbyCountLabel" destination="9ra-9i-Qq5" id="tsM-gY-mLh"/>
                                             <outlet property="hometownLabel" destination="pi7-Rk-u0I" id="Qdg-8O-4ch"/>
                                             <outlet property="nameLabel" destination="GVb-gu-fVM" id="IQ9-AT-W6A"/>
-                                            <segue destination="SuY-It-Pqv" kind="show" id="uoA-iE-h2o"/>
+                                            <segue destination="SuY-It-Pqv" kind="show" identifier="ShowFriendDetailSegue" id="uoA-iE-h2o"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1794" y="-91"/>
         </scene>
-        <!--View Controller-->
+        <!--Friend Detail View Controller-->
         <scene sceneID="BE2-CW-J6h">
             <objects>
-                <viewController id="SuY-It-Pqv" sceneMemberID="viewController">
+                <viewController id="SuY-It-Pqv" customClass="FriendDetailViewController" customModule="HobbyTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="svt-NF-TgA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,8 +216,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="List of hobbies" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lrl-Jo-027">
-                                <rect key="frame" x="20" y="392" width="374" height="450"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="List of hobbies" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lrl-Jo-027">
+                                <rect key="frame" x="20" y="391" width="374" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -240,6 +240,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ym3-mz-afa"/>
                     </view>
+                    <connections>
+                        <outlet property="hobbyListTextView" destination="lrl-Jo-027" id="8do-9B-NW1"/>
+                        <outlet property="hometownLabel" destination="ybI-RA-riE" id="t2c-RW-EtN"/>
+                        <outlet property="nameLabel" destination="SuP-mb-xMH" id="6OP-rK-g2h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PlE-ik-WIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

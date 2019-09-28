@@ -10,21 +10,33 @@ import UIKit
 
 class FriendDetailViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var hometownLabel: UILabel!
+    @IBOutlet weak var hobbyListTextView: UITextView!
+    
+    var friend: Friend? {
+        didSet {
+            updateViews()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        updateViews()
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func updateViews() {
+        guard let friend = friend, isViewLoaded else { return }
+        
+        nameLabel.text = friend.name
+        hometownLabel.text = friend.hometown
+        
+        var hobbyText = ""
+        for hobby in friend.hobbies {
+            hobbyText += "• \(hobby)\n"
+        }
+        hobbyListTextView.text = hobbyText
     }
-    */
-
 }
