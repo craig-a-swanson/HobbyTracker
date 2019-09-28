@@ -14,6 +14,9 @@ class FriendsTableViewController: UIViewController {
     
     var friends: [Friend] = []
     
+    // Adding a place to save things.
+    // this variable and code is used to save data to the disc
+    // returns the URL of where we want to save the storage of our friends.
     var persistentStoreURL: URL! {
         if let documentURL = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true) {
             let persistentStoreURL = documentURL.appendingPathComponent("friendsList.plist")
@@ -25,16 +28,20 @@ class FriendsTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // this if let is used to load saved data from the disc
         if let data = try? Data(contentsOf: persistentStoreURL),
             let savedFriends = try? PropertyListDecoder().decode([Friend].self, from: data) {
             friends = savedFriends
         }
     }
     
-    //func save() {
-    //    if let data = try? PropertyListEncoder().encode(friends) {
-    //        try? data.write(to: )
-    
+    // This is part of the save functionality.  Call the function when a friend is created and when a friend is deleted.
+    func save() {
+        if let data = try? PropertyListEncoder().encode(friends) {
+            try? data.write(to: persistentStoreURL)
+        }
+    }
+            
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "AddFriendModalSegue":
@@ -72,6 +79,7 @@ extension FriendsTableViewController: UITableViewDataSource {
 }
 
 // MARK: Table View Delegate (Swipe to delete)
+// this extension is all the code required to add the swipe to delete row functionality
 
 extension FriendsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -81,6 +89,8 @@ extension FriendsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         friends.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        save()
     }
 }
 
@@ -92,6 +102,6 @@ extension FriendsTableViewController: AddFriendDelegate {
         tableView.reloadData()
         dismiss(animated: true, completion: nil)
         
-//        save()
+        save()
     }
 }
