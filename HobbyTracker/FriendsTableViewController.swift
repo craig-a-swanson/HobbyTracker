@@ -51,9 +51,7 @@ class FriendsTableViewController: UIViewController {
         default:
             fatalError("An unknown segue was encountered: \(segue.identifier ?? "<No ID>")")
         }
-        
-    
-} //ShowFriendDetailSegue
+    } //ShowFriendDetailSegue
 
 }
 
@@ -69,8 +67,20 @@ extension FriendsTableViewController: UITableViewDataSource {
         
         let friend = friends[indexPath.row]
         cell.friend = friend
-        
         return cell
+    }
+}
+
+// MARK: Table View Delegate (Swipe to delete)
+
+extension FriendsTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        friends.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
 
