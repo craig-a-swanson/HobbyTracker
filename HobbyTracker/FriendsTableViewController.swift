@@ -13,6 +13,7 @@ class FriendsTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var friends: [Friend] = []
+    var indexPathForTappedAccessoryButton: IndexPath?
     
     // Adding a place to save things.
     // this variable and code is used to save data to the disc
@@ -45,9 +46,15 @@ class FriendsTableViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "AddFriendModalSegue":
-            guard let addFriendVC = segue.destination as? AddFriendViewController
+            guard let addFriendVC = segue.destination as? EditFriendViewController
                 else { fatalError() }
             addFriendVC.delegate = self
+            
+        case "UpdateFriendModalSegue":
+            guard let indexPath = indexPathForTappedAccessoryButton,
+                let editFriendVC = segue.destination as? EditFriendViewController else { fatalError() }
+            editFriendVC.delegate = self
+            editFriendVC.oldFriend = friends[indexPath.row]
             
         case "ShowFriendDetailSegue":
             guard let indexPath = tableView.indexPathForSelectedRow,
@@ -92,11 +99,17 @@ extension FriendsTableViewController: UITableViewDelegate {
         
         save()
     }
+    
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        indexPathForTappedAccessoryButton = indexPath
+        performSegue(withIdentifier: "UpdateFriendModalSegue", sender: self)
+    }
 }
 
 // MARK: - Add Friend Delegate
 
-extension FriendsTableViewController: AddFriendDelegate {
+extension FriendsTableViewController: EditFriendDelegate {
     func friendWasCreated(_ friend: Friend) {
         friends.append(friend)
         tableView.reloadData()
@@ -104,4 +117,16 @@ extension FriendsTableViewController: AddFriendDelegate {
         
         save()
     }
+    
+    func friend(_ oldFriend: Friend, wasUpdated newFriend: Friend) {
+        guard let indexpath = indexPathForTappedAccessoryButton else {
+            return
+        }
+        friends[indexpath.row] = newFriend
+        tableView.reloadRows(at: [indexpath], with: .automatic)
+        dismiss(animated: true, completion: nil)
+        
+        save()
+    }
+    
 }

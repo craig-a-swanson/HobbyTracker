@@ -8,11 +8,12 @@
 
 import UIKit
 
-protocol AddFriendDelegate {
+protocol EditFriendDelegate {
     func friendWasCreated(_ friend: Friend)
+    func friend(_ oldFriend: Friend, wasUpdated newFriend: Friend)
 }
 
-class AddFriendViewController: UIViewController {
+class EditFriendViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -21,12 +22,36 @@ class AddFriendViewController: UIViewController {
     @IBOutlet weak var hobby2TextField: UITextField!
     @IBOutlet weak var hobby3TextField: UITextField!
     
-    var delegate: AddFriendDelegate?
+    var delegate: EditFriendDelegate?
+    
+    // added code to edit old friend
+    var oldFriend: Friend?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateViews()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func updateViews() {
+        guard let oldFriend = oldFriend else { return }
+        
+        nameTextField.text = oldFriend.name
+        hometownTextField.text = oldFriend.hometown
+        
+        if oldFriend.hobbies.count > 0 {
+            hobby1TextField.text = oldFriend.hobbies[0]
+            
+            if oldFriend.hobbies.count > 1 {
+                hobby2TextField.text = oldFriend.hobbies[1]
+                
+                if oldFriend.hobbies.count > 2 {
+                    hobby3TextField.text = oldFriend.hobbies[2]
+                }
+            }
+        }
     }
     
     @IBAction func cancelOperation(_ sender: UIBarButtonItem) {
@@ -50,7 +75,15 @@ class AddFriendViewController: UIViewController {
         if let hobby3 = hobby3TextField.text, !hobby3.isEmpty {
             friend.hobbies.append(hobby3)
         }
-        delegate?.friendWasCreated(friend)
+        
+        // this code checks to see if the update was on an existing friend
+        // if so, it runs the wasUpdated delegate protocol
+        // if not (friend is new entry) it runs the wasCreated delegate protocol
+        if let oldFriend = oldFriend {
+            delegate?.friend(oldFriend, wasUpdated: friend)
+        } else {
+            delegate?.friendWasCreated(friend)
+        }
     }
     
 }

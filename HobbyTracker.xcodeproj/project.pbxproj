@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4411E02F233C4F6C00C39E98 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411E02E233C4F6C00C39E98 /* AddFriendViewController.swift */; };
+		4411E02F233C4F6C00C39E98 /* EditFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411E02E233C4F6C00C39E98 /* EditFriendViewController.swift */; };
 		4411E031233C4F8000C39E98 /* FriendDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411E030233C4F8000C39E98 /* FriendDetailViewController.swift */; };
 		4411E033233C4FB300C39E98 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411E032233C4FB300C39E98 /* FriendTableViewCell.swift */; };
 		4411E035233C4FE300C39E98 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411E034233C4FE300C39E98 /* Friend.swift */; };
@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4411E02E233C4F6C00C39E98 /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		4411E02E233C4F6C00C39E98 /* EditFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFriendViewController.swift; sourceTree = "<group>"; };
 		4411E030233C4F8000C39E98 /* FriendDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailViewController.swift; sourceTree = "<group>"; };
 		4411E032233C4FB300C39E98 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		4411E034233C4FE300C39E98 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				44D5726A233464FB007BBA35 /* FriendsTableViewController.swift */,
-				4411E02E233C4F6C00C39E98 /* AddFriendViewController.swift */,
+				4411E02E233C4F6C00C39E98 /* EditFriendViewController.swift */,
 				4411E030233C4F8000C39E98 /* FriendDetailViewController.swift */,
 			);
 			name = "View Controllers";
@@ -171,7 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4411E02F233C4F6C00C39E98 /* AddFriendViewController.swift in Sources */,
+				4411E02F233C4F6C00C39E98 /* EditFriendViewController.swift in Sources */,
 				44D5726B233464FB007BBA35 /* FriendsTableViewController.swift in Sources */,
 				4411E033233C4FB300C39E98 /* FriendTableViewCell.swift in Sources */,
 				4411E035233C4FE300C39E98 /* Friend.swift in Sources */,
